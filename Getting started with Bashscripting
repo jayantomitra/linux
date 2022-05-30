@@ -14,5 +14,5 @@ free -h | grep -i mem
 #my program 2> errorfile
 
 #redirect error aswell as output to a file
-# (command) > (outputfile) 2>>&1 
-#ls -l > dirlist.txt 2>>&1
+# (command) > (outputfile) 2>&1 
+#ls -l > dirlist.txt 2>&1
