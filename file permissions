@@ -10,9 +10,12 @@ chmod u+rwx /directory/path
 chmod 760 /directory/path 
 
 #sudoers
-If user does not want to enter its password after running sudo command then
-Add NOPASSWD option in users entry in sudoers file as follows:
-username ALL=(ALL:ALL) NOPASSWD:ALL
+#If user does not want to enter its password after running sudo command then
+#Add NOPASSWD option in users entry in sudoers file as follows:
+#username ALL=(ALL:ALL) NOPASSWD:ALL
 
-
+#cd /etc/sudoers.d/
+#vim/cp existing user(vagrant) (user/group)file
+#%devops        ALL=(ALL)       NOPASSWD: ALL
+#(% is for grp) 
 
