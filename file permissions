@@ -1,0 +1,10 @@
+#chown
+#chown user.group /directory/path 
+
+chown aws.devops /opt/webdata
+
+#symbolic method to change permission modes
+chmod u+rwx /directory/path 
+
+#numeric method u = rwx, g = rw- o = ---
+chmod 760 /directory/path 
