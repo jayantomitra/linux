@@ -1,0 +1,18 @@
+#output redirection
+#syntax
+#(command) > (filepath/file)
+#(command) >> (filepath/file)
+
+
+# Pipping commands > running multiple commands together 
+#ex (command1) | (command2)
+
+free -h | grep -i mem
+
+
+#solution for redirecting command(program) error messafes to a file
+#my program 2> errorfile
+
+#redirect error aswell as output to a file
+# (command) > (outputfile) 2>&1 
+#ls -l > dirlist.txt 2>&1

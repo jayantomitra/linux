@@ -1,0 +1,2 @@
+#Processes
+#process id - command < ps -ef > checks PID: Process ID & PPID: Parent process ID

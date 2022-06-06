@@ -1,0 +1,21 @@
+#chown
+#chown user.group /directory/path 
+
+chown aws.devops /opt/webdata
+
+#symbolic method to change permission modes
+chmod u+rwx /directory/path 
+
+#numeric method u = rwx, g = rw- o = ---
+chmod 760 /directory/path 
+
+#sudoers
+#If user does not want to enter its password after running sudo command then
+#Add NOPASSWD option in users entry in sudoers file as follows:
+#username ALL=(ALL:ALL) NOPASSWD:ALL
+
+#cd /etc/sudoers.d/
+#vim/cp existing user(vagrant) (user/group)file
+#%devops        ALL=(ALL)       NOPASSWD: ALL
+#(% is for grp) 
+
