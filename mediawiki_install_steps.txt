@@ -1,0 +1,82 @@
+#STEPS TO INSTALL MEDIA WIKI
+
+sudo dnf update -y
+
+sudo dnf module reset php 
+sudo dnf module enable php:7.4 
+sudo dnf install httpd php php-mysqlnd php-gd php-xml mariadb-server mariadb php-mbstring php-json mod_ssl php-intl php-apcu -y
+
+
+# START MARIADB & SECURE IT
+
+sudo systemctl start mariadb
+sudo mysql_secure_installation
+
+#LOG INTO MYSQL CLIENT:
+
+mysql -u root -p
+
+
+#At the database prompt, Create the wiki user:
+
+CREATE USER 'wiki'@'localhost' IDENTIFIED BY 'mypasswd';
+
+CREATE DATABASE wikidatabase;  
+
+#GRANT PRIVILEGES TO NEWLY CREATED DB:
+
+GRANT ALL PRIVILEGES ON wikidatabase.* TO 'wiki'@'localhost';
+FLUSH PRIVILEGES;
+
+#AUTOSTART WEBSERVER AND DATABASE DAEMONS (SERVICES)
+
+
+sudo systemctl enable mariadb
+sudo systemctl enable httpd
+
+
+cd /home/
+
+# if downloading directly from  mediawiki
+sudo dnf install wget -y 
+sudo wget https://releases.wikimedia.org/mediawiki/1.38/mediawiki-1.38.2.tar.gz
+
+sudo  cd /var/www/html/
+sudo  tar -zxf /home/mediawiki-1.38.2.tar.gz
+sudo  ln -s mediawiki-1.38.2/ mediawiki
+
+sudo chown -R apache:apache /var/www/html/mediawiki
+
+#APACHE	RESTART
+
+sudo systemctl restart httpd 
+
+sudo dnf install firewalld -y
+
+#FIREWALL CONFIGURATION
+# active: inactive(dead)
+# following commands
+sudo systemctl unmask --now firewalld
+sudo systemctl enable firewalld
+sudo firewall--cmd --permanent --zone=public --add-service=http
+sudo firewall--cmd --permanent --zone=public --add-service=https
+sudo firewall--cmd --permanent --add-port=80/tcp
+
+sudo systemctl restart firewalld
+
+restorecon -r /var/www/html/media
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
